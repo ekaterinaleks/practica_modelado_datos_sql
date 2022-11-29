@@ -15,11 +15,13 @@ SELECT 	m.nombre as modelo
 		,g.nombre as grupo
 		,c.fecha_compra
 		,c.matricula
-		,c.color
+		,clr.nombre as color
 		,r.kilometros
 		,a.nombre as aseguradora
 		,p2.num_poliza as numero_de_poliza
 FROM practica_ee.coches as c
+INNER JOIN practica_ee.colores as clr
+ON c.id_color = clr.id_color
 INNER JOIN practica_ee.modelos as m
 ON c.id_modelo = m.id_modelo
 INNER JOIN practica_ee.marcas as mr
@@ -35,4 +37,5 @@ ON c.id_coche = up.id_coche
 INNER JOIN practica_ee.polizas as p2
 ON up.id_coche = p2.id_coche AND up.fecha_poliza = p2.fecha_contratacion
 INNER JOIN practica_ee.aseguradoras as a
-ON p2.id_aseguradora = a.id_aseguradora;
+ON p2.id_aseguradora = a.id_aseguradora
+ORDER BY c.fecha_compra;
