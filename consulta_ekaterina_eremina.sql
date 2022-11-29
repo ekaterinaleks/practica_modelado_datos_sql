@@ -38,4 +38,5 @@ INNER JOIN practica_ee.polizas as p2
 ON up.id_coche = p2.id_coche AND up.fecha_poliza = p2.fecha_contratacion
 INNER JOIN practica_ee.aseguradoras as a
 ON p2.id_aseguradora = a.id_aseguradora
+WHERE c.flag_activo = true
 ORDER BY c.fecha_compra;

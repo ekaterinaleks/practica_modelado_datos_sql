@@ -3,7 +3,7 @@
 --crear un esquema de trabajo
 CREATE SCHEMA practica_ee AUTHORIZATION gwxlnkne;
 
---crear la tabla de grupos automovilísticos
+--crear la tabla de grupos automovilisticos
 CREATE TABLE practica_ee.grupos(
 			id_grupo varchar(10) not null,    --PK
 			nombre varchar(200) not null,
@@ -60,6 +60,7 @@ CREATE TABLE practica_ee.coches(
 			id_color varchar(10) not null,		--FK1
 			fecha_compra date not null default '4000-01-01',
 			id_modelo varchar(10) not null, 	--FK2
+			flag_activo boolean not null default true,
 			comentario varchar(512) null
 );
 
@@ -168,7 +169,7 @@ REFERENCES practica_ee.divisas(id_divisa);
 --rellenar la tabla de grupos automovilísticos
 INSERT INTO practica_ee.grupos
 (id_grupo, nombre, comentario)
-VALUES('01', 'PSA', 'Peugeot Société Anonyme');
+VALUES('01', 'PSA', 'Peugeot Societe Anonyme');
 
 INSERT INTO practica_ee.grupos
 (id_grupo, nombre, comentario)
@@ -178,7 +179,7 @@ VALUES('02', 'Volkswagen', 'Volkswagen Aktiengesellschaft');
 
 INSERT INTO practica_ee.marcas
 (id_marca, nombre, id_grupo, comentario)
-VALUES('01', 'Citroën', '01', 'Automobiles Citroën');
+VALUES('01', 'Citroen', '01', 'Automobiles Citroen');
 
 INSERT INTO practica_ee.marcas
 (id_marca, nombre, id_grupo, comentario)
@@ -186,7 +187,7 @@ VALUES('02', 'Opel', '01', 'Opel Automobile GmbH');
 
 INSERT INTO practica_ee.marcas
 (id_marca, nombre, id_grupo, comentario)
-VALUES('03', 'Peugeot', '01', 'Société des automobiles Peugeot');
+VALUES('03', 'Peugeot', '01', 'Societe des automobiles Peugeot');
 
 INSERT INTO practica_ee.marcas
 (id_marca, nombre, id_grupo, comentario)
@@ -194,12 +195,12 @@ VALUES('04', 'Skoda', '02', 'Skoda Auto a.s.');
 
 INSERT INTO practica_ee.marcas
 (id_marca, nombre, id_grupo, comentario)
-VALUES('05', 'SEAT', '02', ' Sociedad Española de Automóviles de Turismo');
+VALUES('05', 'SEAT', '02', 'Sociedad Espanola de Automoviles de Turismo');
 
 --rellenar la tabla de modelos de coches
 INSERT INTO practica_ee.modelos 
 (id_modelo, nombre, id_marca, comentario)
-VALUES('01', 'Citroën C4', '01', '');
+VALUES('01', 'Citroen C4', '01', '');
 
 INSERT INTO practica_ee.modelos 
 (id_modelo, nombre, id_marca, comentario)
@@ -259,6 +260,10 @@ INSERT INTO practica_ee.coches
 (id_coche, matricula, id_color, fecha_compra, id_modelo)
 VALUES('05', '9999 NNNN', '01', '2019-08-09', '01');
 
+INSERT INTO practica_ee.coches
+(id_coche, matricula, id_color, fecha_compra, id_modelo, flag_activo)
+VALUES('06', '0000 PPPP', '05', '1999-08-09', '01', false);
+
 
 --rellenar la tabla de divisas
 INSERT INTO practica_ee.divisas
@@ -309,6 +314,10 @@ VALUES('05', '2019-01-01', 400000, 50, '01');
 INSERT INTO practica_ee.revisiones
 (id_coche, fecha_revision, kilometros, importe, id_divisa)
 VALUES('05', '2020-01-01', 500000, 50, '01');
+
+INSERT INTO practica_ee.revisiones
+(id_coche, fecha_revision, kilometros, importe, id_divisa)
+VALUES('06', '2015-01-01', 50000000, 50, '01');
 
 --rellenar la tabla de aseguradoras
 INSERT INTO practica_ee.aseguradoras
@@ -368,4 +377,8 @@ VALUES('557793212', '04', '01', '04', 450, 0, '01', '2019-10-01', '2020-01-01', 
 INSERT INTO practica_ee.polizas
 (num_poliza, id_coche, id_aseguradora, id_tipo_seguro, prima_anual, pagos_extra, id_divisa, fecha_contratacion, fecha_inicio, fecha_fin)
 VALUES('112256789', '05', '03', '03', 300, 0, '01', '2019-10-01', '2020-01-01', '2023-01-01');
+
+INSERT INTO practica_ee.polizas
+(num_poliza, id_coche, id_aseguradora, id_tipo_seguro, prima_anual, pagos_extra, id_divisa, fecha_contratacion, fecha_inicio, fecha_fin)
+VALUES('000056789', '06', '01', '01', 130, 200, '01', '1999-10-01', '1999-01-01', '2020-01-01');
 
