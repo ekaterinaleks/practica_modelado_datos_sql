@@ -1,5 +1,3 @@
---DROP SCHEMA practica_ee CASCADE;
-
 --crear un esquema de trabajo
 CREATE SCHEMA practica_ee AUTHORIZATION gwxlnkne;
 

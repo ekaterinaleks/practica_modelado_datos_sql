@@ -10,15 +10,15 @@ FROM practica_ee.polizas as p
 GROUP BY p.id_coche
 )
 
-SELECT 	m.nombre as modelo
-		,mr.nombre as marca
-		,g.nombre as grupo
-		,c.fecha_compra
-		,c.matricula
-		,clr.nombre as color
-		,r.kilometros
-		,a.nombre as aseguradora
-		,p2.num_poliza as numero_de_poliza
+SELECT 	m.nombre as modelo,
+		mr.nombre as marca,
+		g.nombre as grupo,
+		c.fecha_compra,
+		c.matricula,
+		clr.nombre as color,
+		r.kilometros,
+		a.nombre as aseguradora,
+		p2.num_poliza as numero_de_poliza
 FROM practica_ee.coches as c
 INNER JOIN practica_ee.colores as clr
 ON c.id_color = clr.id_color
